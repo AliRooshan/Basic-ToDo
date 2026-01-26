@@ -1,0 +1,148 @@
+.add-task-page {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.home-btn {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    color: var(--color-text);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+    box-shadow: 0 6px 12px rgba(132, 169, 140, 0.2);
+}
+
+.add-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+
+.add-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* Soft card background */
+    border-radius: var(--radius-lg);
+}
+
+.form-group {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.date-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.date-input {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 1px solid var(--color-primary-soft);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    width: 100%;
+    max-width: 200px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.date-input:focus {
+    outline: 2px solid var(--color-primary);
+    border-color: transparent;
+    background: #fff;
+}
+
+.main-input {
+    flex: 1;
+}
+
+.title-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-text);
+    resize: none;
+    padding: 0;
+    line-height: 1.4;
+}
+
+.title-input::placeholder {
+    color: var(--color-primary-soft);
+    opacity: 0.7;
+}
+
+.title-input:focus {
+    outline: none;
+}
+
+.actions {
+    margin-top: auto;
+    padding-top: 2rem;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 1.25rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(132, 169, 140, 0.3);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 0.02em;
+}
+
+.save-btn:disabled {
+    background: var(--color-surface-hover);
+    color: var(--color-primary-soft);
+    cursor: not-allowed;
+    box-shadow: none;
+}

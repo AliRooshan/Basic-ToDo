@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: light;
+
+  /* Natural & Airy Palette (Mindful/Calm) */
+  --color-bg: #F0EFEB;
+  /* Slightly darker cream for contrast against cards */
+
+  --color-surface: #FFFFFF;
+  /* Pure white cards */
+  --color-surface-hover: #FDFCFD;
+
+  --color-primary: #84A98C;
+  /* Sage Green */
+  --color-primary-soft: #CAD2C5;
+  /* Light pale green */
+  --color-primary-hover: #52796F;
+  /* Darker Sage */
+
+  --color-accent: #D6CCC2;
+  /* Soft Brown / Taupe */
+
+  --color-text: #354F52;
+  /* Dark Slate Green/Grey */
+  --color-text-light: #52796F;
+  --color-text-lighter: #84A98C;
+
+  --color-success: #84A98C;
+  --color-success-bg: #EAF4F4;
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
+
+  --header-height: 5rem;
+
+  --shadow-soft: 0 10px 30px -10px rgba(132, 169, 140, 0.2);
+  --shadow-hover: 0 8px 30px rgba(132, 169, 140, 0.25);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  /* Subtle organic background pattern could go here, keeping it clean for now */
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  max-width: 600px;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: 'Lora', serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Common Utilities */
+.page-container {
+  padding: 2rem;
+  padding-bottom: 6rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(132, 169, 140, 0.1);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(132, 169, 140, 0.15);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-soft), transparent);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  opacity: 0.6;
+}
+
+/* Animations */
+@keyframes breezeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: breezeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Custom Scrollbar - Soft & Round */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 10px;
+}
+
+
+/* App Header Global Styles */
+.app-main-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+  background: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-card);
+  align-self: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgba(132, 169, 140, 0.1);
+}
+
+.app-logo {
+  color: var(--color-primary);
+  filter: drop-shadow(0 2px 4px rgba(132, 169, 140, 0.3));
+}
+
+.app-title {
+  font-family: 'Lora', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

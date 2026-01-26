@@ -1,0 +1,167 @@
+.app-unified-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    /* Increased opacity */
+    backdrop-filter: blur(16px);
+    /* Increased blur */
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    /* Stronger shadow */
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .app-unified-header {
+    background: rgba(30, 30, 30, 0.85);
+    /* Increased opacity for dark mode */
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Section */
+.header-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.header-logo-icon {
+    color: var(--color-primary);
+    filter: drop-shadow(0 2px 4px rgba(var(--color-primary-rgb), 0.3));
+}
+
+.header-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-text-main) 0%, var(--color-text-light) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+/* Tabs Section */
+.header-tabs-container {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.25rem;
+    border-radius: 999px;
+    display: flex;
+    gap: 0.25rem;
+    position: relative;
+}
+
+body.dark-mode .header-tabs-container {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.header-tab {
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.header-tab.active {
+    color: var(--color-text-main);
+    /* Or white if using a colored active background */
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-weight: 600;
+}
+
+body.dark-mode .header-tab.active {
+    background: #404040;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.header-tab:hover:not(.active) {
+    color: var(--color-text-main);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .header-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Logout Section */
+.header-logout-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-logout-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-light);
+    padding: 0.6rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.header-logout-btn:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    transform: translateX(2px);
+}
+
+@media (max-width: 600px) {
+    .app-unified-header {
+        flex-direction: row;
+        /* Keep it single row */
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .header-logo-section {
+        flex: 0 0 auto;
+        margin-bottom: 0;
+        gap: 0;
+    }
+
+    .header-logo-section .header-title {
+        display: none;
+        /* Hide title on mobile to save space */
+    }
+
+    .header-tabs-container {
+        width: auto;
+        flex: 1;
+        justify-content: center;
+        padding: 0.2rem;
+        margin: 0 0.5rem;
+    }
+
+    .header-tab {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    .header-logout-section {
+        position: static;
+        /* No absolute positioning */
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
