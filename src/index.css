@@ -102,6 +102,13 @@ a {
   min-height: 100vh;
 }
 
+@media (max-width: 600px) {
+  .page-container {
+    padding: 1rem;
+    padding-bottom: 5rem;
+  }
+}
+
 .content-card {
   background: var(--color-surface);
   border-radius: var(--radius-lg);

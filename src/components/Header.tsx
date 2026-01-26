@@ -12,7 +12,15 @@ const Header: React.FC<HeaderProps> = ({ mode, onModeChange, logout }) => {
     return (
         <header className="app-unified-header">
             <div className="header-logo-section">
-                <Leaf className="header-logo-icon" size={24} />
+                <svg width="0" height="0" className="hidden-gradient">
+                    <defs>
+                        <linearGradient id="leaf-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#84A98C" />
+                            <stop offset="100%" stopColor="#52796F" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <Leaf className="header-logo-icon" size={24} style={{ stroke: 'url(#leaf-gradient)' }} />
                 <span className="header-title">Daily Flow</span>
             </div>
 
