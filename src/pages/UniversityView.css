@@ -76,9 +76,9 @@
     background: transparent;
     border: none !important;
     box-shadow: none !important;
-    padding: 0 2rem;
+    padding: 0 1rem;
     max-width: 600px;
-    margin: 2rem auto;
+    margin: 1rem auto;
     width: 100%;
     flex-direction: column;
 }
@@ -142,5 +142,9 @@
     .fab {
         bottom: 1.5rem;
         right: 1.5rem;
+    }
+
+    .course-name-label {
+        font-size: 1.1rem;
     }
 }
