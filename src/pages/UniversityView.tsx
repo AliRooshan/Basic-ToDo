@@ -94,7 +94,12 @@ const UniversityView: React.FC = () => {
         return tasks
             .filter(t => t.courseId === courseId)
             .sort((a, b) => {
-                // Sort by deadline
+                // Primary Sort: Completion status (uncompleted first)
+                if (a.completed !== b.completed) {
+                    return a.completed ? 1 : -1;
+                }
+
+                // Secondary Sort: Deadline
                 if (!a.deadline && !b.deadline) return 0;
                 if (!a.deadline) return 1;
                 if (!b.deadline) return -1;

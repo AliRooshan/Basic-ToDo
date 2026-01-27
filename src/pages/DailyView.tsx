@@ -91,7 +91,12 @@ const DailyView: React.FC = () => {
         setConfirmDelete({ show: false, taskId: null });
     };
 
-    const currentDayTasks = tasks.filter(t => isSameDay(parseISO(t.date), parseISO(selectedDate)));
+    const currentDayTasks = tasks
+        .filter(t => isSameDay(parseISO(t.date), parseISO(selectedDate)))
+        .sort((a, b) => {
+            if (a.completed === b.completed) return 0;
+            return a.completed ? 1 : -1;
+        });
 
     const today = startOfDay(new Date());
     const selectedDateObj = parseISO(selectedDate);

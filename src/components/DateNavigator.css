@@ -1,12 +1,14 @@
 .date-navigator-container {
     width: 100%;
-    padding: 1.25rem 0;
-    background: linear-gradient(to bottom, var(--color-bg), rgba(240, 239, 235, 0.5));
+    padding: 0.5rem 0;
+    background: #84A98C;
     position: sticky;
     top: 0;
     z-index: 10;
     border-bottom: 1px solid transparent;
     transition: all 0.3s;
+    margin-bottom: 0.5rem;
+    border-radius: 30px;
 }
 
 .date-navigator-container.scrolled {
@@ -53,11 +55,11 @@
 }
 
 .current-date-display {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     font-family: 'Lora', serif;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
