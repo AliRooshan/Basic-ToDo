@@ -24,14 +24,14 @@ const DailyView: React.FC = () => {
         taskId: null
     });
 
-    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         loadTasks();
     }, []);
 
     const loadTasks = async () => {
-        setIsLoading(true);
+
         const allTasks = await fetchTasks();
         const hasChanges = await processCarryOver(allTasks);
         if (hasChanges) {
@@ -44,7 +44,7 @@ const DailyView: React.FC = () => {
         } else {
             setTasks(allTasks.filter(t => !t.courseId));
         }
-        setIsLoading(false);
+
     };
 
     const handleModeChange = (newMode: AppMode) => {
@@ -115,29 +115,23 @@ const DailyView: React.FC = () => {
                     <DateNavigator selectedDate={selectedDate} onSelectDate={setSelectedDate} />
 
                     <main className="tasks-container">
-                        {isLoading ? (
-                            <div className="loading-state">
-                                <span>Loading tasks...</span>
-                            </div>
-                        ) : (
-                            <div className="tasks-list">
-                                {currentDayTasks.length > 0 ? (
-                                    currentDayTasks.map(task => (
-                                        <TaskItem
-                                            key={task.id}
-                                            task={task}
-                                            onToggle={handleToggleTask}
-                                            onDelete={handleDeleteTask}
-                                            readOnly={isPast}
-                                        />
-                                    ))
-                                ) : (
-                                    <div className="empty-state">
-                                        <span>No tasks yet</span>
-                                    </div>
-                                )}
-                            </div>
-                        )}
+                        <div className="tasks-list">
+                            {currentDayTasks.length > 0 ? (
+                                currentDayTasks.map(task => (
+                                    <TaskItem
+                                        key={task.id}
+                                        task={task}
+                                        onToggle={handleToggleTask}
+                                        onDelete={handleDeleteTask}
+                                        readOnly={isPast}
+                                    />
+                                ))
+                            ) : (
+                                <div className="empty-state">
+                                    <span>No tasks yet</span>
+                                </div>
+                            )}
+                        </div>
                     </main>
 
                     <button

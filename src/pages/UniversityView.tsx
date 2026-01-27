@@ -19,17 +19,17 @@ const UniversityView: React.FC = () => {
         taskId: null
     });
 
-    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         loadTasks();
     }, []);
 
     const loadTasks = async () => {
-        setIsLoading(true);
+
         const allTasks = await fetchTasks();
         setTasks(allTasks.filter(t => t.courseId));
-        setIsLoading(false);
+
     };
 
     const handleModalClose = async () => {
@@ -128,38 +128,32 @@ const UniversityView: React.FC = () => {
             </div>
 
             {/* Single Course Card */}
-            {isLoading ? (
-                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--color-text-light)' }}>
-                    Loading tasks...
-                </div>
-            ) : (
-                selectedCourse && (
-                    <div
-                        key={selectedCourse.id}
-                        className="course-card content-card"
-                    >
-                        <div className="course-tasks">
-                            {courseTasks.length > 0 ? (
-                                courseTasks.map(task => (
-                                    <div key={task.id} className="task-wrapper">
-                                        <TaskItem
-                                            task={task}
-                                            onToggle={handleToggleTask}
-                                            onDelete={handleDeleteTask}
-                                            readOnly={false}
-                                            deadlineText={task.deadline ? format(parseISO(task.deadline), 'EEEE, MMM d') : undefined}
-                                            isOverdue={isOverdue(task.deadline)}
-                                        />
-                                    </div>
-                                ))
-                            ) : (
-                                <div className="empty-state">
-                                    <span>No tasks yet</span>
+            {selectedCourse && (
+                <div
+                    key={selectedCourse.id}
+                    className="course-card content-card"
+                >
+                    <div className="course-tasks">
+                        {courseTasks.length > 0 ? (
+                            courseTasks.map(task => (
+                                <div key={task.id} className="task-wrapper">
+                                    <TaskItem
+                                        task={task}
+                                        onToggle={handleToggleTask}
+                                        onDelete={handleDeleteTask}
+                                        readOnly={false}
+                                        deadlineText={task.deadline ? format(parseISO(task.deadline), 'EEEE, MMM d') : undefined}
+                                        isOverdue={isOverdue(task.deadline)}
+                                    />
                                 </div>
-                            )}
-                        </div>
+                            ))
+                        ) : (
+                            <div className="empty-state">
+                                <span>No tasks yet</span>
+                            </div>
+                        )}
                     </div>
-                )
+                </div>
             )}
 
             <button
