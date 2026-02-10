@@ -162,18 +162,25 @@ export const deleteTask = async (taskId: string): Promise<boolean> => {
 export const processCarryOver = async (tasks: Task[]): Promise<boolean> => {
     const today = format(new Date(), 'yyyy-MM-dd');
     const todayDate = startOfDay(new Date());
-    let hasChanges = false;
+    // let hasChanges = false; // Removed unused variable
 
-    const updates = tasks.map(async (task) => {
-        if (!task.courseId && !task.completed && isBefore(parseISO(task.date), todayDate)) {
-            hasChanges = true;
-            // Update remotely
-            const updatedTask = { ...task, date: today };
-            await updateTask(updatedTask);
-        }
+    // Filter tasks that need updating first
+    const tasksToUpdate = tasks.filter(task => {
+        if (task.courseId || task.completed) return false;
+
+        // Check if date is before today
+        const taskDate = parseISO(task.date);
+        return isBefore(taskDate, todayDate);
     });
 
-    await Promise.all(updates);
-    return hasChanges;
+    if (tasksToUpdate.length === 0) return false;
+
+    // Process updates in parallel
+    await Promise.all(tasksToUpdate.map(async (task) => {
+        const updatedTask = { ...task, date: today };
+        await updateTask(updatedTask);
+    }));
+
+    return true;
 };
 

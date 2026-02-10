@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { format, isBefore, startOfDay, parseISO, isSameDay } from 'date-fns';
+import { format, parseISO, isSameDay } from 'date-fns';
 import { useAuth } from '../context/AuthContext';
 import { Plus } from 'lucide-react';
 
-import DateNavigator from '../components/DateNavigator';
 import TaskItem from '../components/TaskItem';
 import AddTaskModal from '../components/AddTaskModal';
 import ConfirmModal from '../components/ConfirmModal';
@@ -16,7 +15,8 @@ import './DailyView.css';
 const DailyView: React.FC = () => {
     const { logout } = useAuth();
     const [mode, setMode] = useState<AppMode>(getMode());
-    const [selectedDate, setSelectedDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    // Always default to today
+    const selectedDate = format(new Date(), 'yyyy-MM-dd');
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState<{ show: boolean; taskId: string | null }>({
@@ -98,10 +98,6 @@ const DailyView: React.FC = () => {
             return a.completed ? 1 : -1;
         });
 
-    const today = startOfDay(new Date());
-    const selectedDateObj = parseISO(selectedDate);
-    const isPast = isBefore(selectedDateObj, today);
-
     return (
         <div className="daily-view page-container">
             <Header
@@ -112,7 +108,11 @@ const DailyView: React.FC = () => {
 
             {mode === 'personal' ? (
                 <>
-                    <DateNavigator selectedDate={selectedDate} onSelectDate={setSelectedDate} />
+                    <div className="daily-header-pill">
+                        <div className="daily-header-content">
+                            <span className="daily-header-label">To Do</span>
+                        </div>
+                    </div>
 
                     <main className="tasks-container">
                         <div className="tasks-list">
@@ -123,7 +123,7 @@ const DailyView: React.FC = () => {
                                         task={task}
                                         onToggle={handleToggleTask}
                                         onDelete={handleDeleteTask}
-                                        readOnly={isPast}
+                                        readOnly={false}
                                     />
                                 ))
                             ) : (
@@ -145,7 +145,6 @@ const DailyView: React.FC = () => {
                     <AddTaskModal
                         isOpen={isModalOpen}
                         onClose={handleModalClose}
-                        initialDate={selectedDate}
                     />
                 </>
             ) : (

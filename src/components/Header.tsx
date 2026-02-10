@@ -26,16 +26,16 @@ const Header: React.FC<HeaderProps> = ({ mode, onModeChange, logout }) => {
 
             <div className="header-tabs-container">
                 <button
-                    className={`header-tab ${mode === 'personal' ? 'active' : ''}`}
-                    onClick={() => onModeChange('personal')}
-                >
-                    Personal
-                </button>
-                <button
                     className={`header-tab ${mode === 'university' ? 'active' : ''}`}
                     onClick={() => onModeChange('university')}
                 >
                     University
+                </button>
+                <button
+                    className={`header-tab ${mode === 'personal' ? 'active' : ''}`}
+                    onClick={() => onModeChange('personal')}
+                >
+                    Personal
                 </button>
             </div>
 

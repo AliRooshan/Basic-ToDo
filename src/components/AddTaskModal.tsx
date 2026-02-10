@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { format } from 'date-fns';
 import { addTask } from '../utils/storage';
 import type { Task } from '../types';
@@ -8,12 +8,13 @@ import './AddTaskModal.css';
 interface AddTaskModalProps {
     isOpen: boolean;
     onClose: () => void;
-    initialDate?: string;
+    // initialDate removed as not used
 }
 
-const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, initialDate }) => {
+const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose }) => {
     const [title, setTitle] = useState('');
-    const [date, setDate] = useState(initialDate || format(new Date(), 'yyyy-MM-dd'));
+    // Always use today's date for Personal tasks
+    const [date] = useState(format(new Date(), 'yyyy-MM-dd'));
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -58,21 +59,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, initialDat
                         </div>
 
                         <form onSubmit={handleSubmit} className="modal-form">
-                            <div className="form-group-modal">
-                                <label htmlFor="task-date-modal" className="date-label-modal">
-                                    <Calendar size={16} />
-                                    <span>Scheduled For</span>
-                                </label>
-                                <input
-                                    type="date"
-                                    id="task-date-modal"
-                                    value={date}
-                                    onChange={(e) => setDate(e.target.value)}
-                                    className="date-input-modal"
-                                    required
-                                    min={format(new Date(), 'yyyy-MM-dd')}
-                                />
-                            </div>
+                            {/* Date input removed as it is always Today for Personal tasks */}
 
                             <div className="form-group-modal">
                                 <textarea
