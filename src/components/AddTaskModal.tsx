@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
 import { addTask } from '../utils/storage';
 import type { Task } from '../types';
@@ -8,13 +8,11 @@ import './AddTaskModal.css';
 interface AddTaskModalProps {
     isOpen: boolean;
     onClose: () => void;
-    // initialDate removed as not used
 }
 
 const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose }) => {
     const [title, setTitle] = useState('');
-    // Always use today's date for Personal tasks
-    const [date] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'));
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -34,11 +32,13 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose }) => {
 
         setIsSubmitting(false);
         setTitle('');
+        setDate(format(new Date(), 'yyyy-MM-dd'));
         onClose();
     };
 
     const handleClose = () => {
         setTitle('');
+        setDate(format(new Date(), 'yyyy-MM-dd'));
         onClose();
     };
 
@@ -59,7 +59,20 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose }) => {
                         </div>
 
                         <form onSubmit={handleSubmit} className="modal-form">
-                            {/* Date input removed as it is always Today for Personal tasks */}
+                            <div className="form-group-modal">
+                                <label htmlFor="task-date-modal" className="date-label-modal">
+                                    <Calendar size={16} />
+                                    <span>Date</span>
+                                </label>
+                                <input
+                                    type="date"
+                                    id="task-date-modal"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    className="date-input-modal"
+                                    required
+                                />
+                            </div>
 
                             <div className="form-group-modal">
                                 <textarea
