@@ -55,11 +55,10 @@ body.dark-mode .app-unified-header {
 
 /* Tabs Section */
 .header-tabs-container {
-    background: rgba(0, 0, 0, 0.05);
     padding: 0.25rem;
     border-radius: 999px;
     display: flex;
-    gap: 0.25rem;
+    gap: 0.75rem;
     position: relative;
 }
 
@@ -72,9 +71,9 @@ body.dark-mode .header-tabs-container {
     border-radius: 999px;
     border: none;
     background: transparent;
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-    font-weight: 500;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.25s ease;
     position: relative;
@@ -82,11 +81,10 @@ body.dark-mode .header-tabs-container {
 }
 
 .header-tab.active {
-    color: var(--color-text-main);
-    /* Or white if using a colored active background */
-    background: #fff;
+    color: white;
+    background: #84A98C;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 body.dark-mode .header-tab.active {

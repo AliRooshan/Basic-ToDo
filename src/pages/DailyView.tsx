@@ -110,7 +110,7 @@ const DailyView: React.FC = () => {
                 <>
                     <div className="daily-header-pill">
                         <div className="daily-header-content">
-                            <span className="daily-header-label">To Do</span>
+                            <span className="daily-header-label">Senior Project</span>
                         </div>
                     </div>
 

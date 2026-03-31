@@ -29,13 +29,13 @@ const Header: React.FC<HeaderProps> = ({ mode, onModeChange, logout }) => {
                     className={`header-tab ${mode === 'university' ? 'active' : ''}`}
                     onClick={() => onModeChange('university')}
                 >
-                    University
+                    Courses
                 </button>
                 <button
                     className={`header-tab ${mode === 'personal' ? 'active' : ''}`}
                     onClick={() => onModeChange('personal')}
                 >
-                    Personal
+                    Project
                 </button>
             </div>
 
