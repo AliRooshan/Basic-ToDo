@@ -18,6 +18,7 @@ const DailyView: React.FC = () => {
     // Always default to today
     const selectedDate = format(new Date(), 'yyyy-MM-dd');
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState<{ show: boolean; taskId: string | null }>({
         show: false,
@@ -31,20 +32,16 @@ const DailyView: React.FC = () => {
     }, []);
 
     const loadTasks = async () => {
-
+        setIsLoading(true);
         const allTasks = await fetchTasks();
         const hasChanges = await processCarryOver(allTasks);
         if (hasChanges) {
-            // Re-fetch to get updated dates? Or just trust processCarryOver returns? 
-            // processCarryOver in my impl returns boolean. 
-            // Ideally processCarryOver should return updated list or we re-fetch.
-            // Let's re-fetch to be safe and simple.
             const reloaded = await fetchTasks();
             setTasks(reloaded.filter(t => !t.courseId));
         } else {
             setTasks(allTasks.filter(t => !t.courseId));
         }
-
+        setIsLoading(false);
     };
 
     const handleModeChange = (newMode: AppMode) => {
@@ -116,7 +113,11 @@ const DailyView: React.FC = () => {
 
                     <main className="tasks-container">
                         <div className="tasks-list">
-                            {currentDayTasks.length > 0 ? (
+                            {isLoading ? (
+                                <div className="empty-state">
+                                    <span>Loading tasks...</span>
+                                </div>
+                            ) : currentDayTasks.length > 0 ? (
                                 currentDayTasks.map(task => (
                                     <TaskItem
                                         key={task.id}

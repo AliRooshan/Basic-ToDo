@@ -99,7 +99,7 @@
     text-align: center;
     margin-top: 1rem;
     margin-left: 0;
-    border: 2px dashed var(--color-primary-soft);
+    border: none;
     border-radius: var(--radius-lg);
     background: linear-gradient(135deg, rgba(132, 169, 140, 0.03), rgba(202, 210, 197, 0.08));
     position: relative;

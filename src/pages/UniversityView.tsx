@@ -12,6 +12,7 @@ const UniversityView: React.FC = () => {
     const [courses] = useState<Course[]>(getCourses());
     const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCourseForModal, setSelectedCourseForModal] = useState<string | null>(null);
     const [confirmDelete, setConfirmDelete] = useState<{ show: boolean; taskId: string | null }>({
@@ -26,10 +27,10 @@ const UniversityView: React.FC = () => {
     }, []);
 
     const loadTasks = async () => {
-
+        setIsLoading(true);
         const allTasks = await fetchTasks();
         setTasks(allTasks.filter(t => t.courseId));
-
+        setIsLoading(false);
     };
 
     const handleModalClose = async () => {
@@ -134,7 +135,11 @@ const UniversityView: React.FC = () => {
                     className="course-card content-card"
                 >
                     <div className="course-tasks">
-                        {courseTasks.length > 0 ? (
+                        {isLoading ? (
+                            <div className="empty-state">
+                                <span>Loading tasks</span>
+                            </div>
+                        ) : courseTasks.length > 0 ? (
                             courseTasks.map(task => (
                                 <div key={task.id} className="task-wrapper">
                                     <TaskItem
