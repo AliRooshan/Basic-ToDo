@@ -10,9 +10,10 @@ interface TaskItemProps {
     readOnly?: boolean;
     deadlineText?: string;
     isOverdue?: boolean;
+    courseName?: string;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, readOnly, deadlineText, isOverdue }) => {
+const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, readOnly, deadlineText, isOverdue, courseName }) => {
     return (
         <div
             className={`task-item ${task.completed ? 'completed' : ''} ${readOnly ? 'read-only' : ''}`}
@@ -25,12 +26,19 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, readOnly,
             </div>
 
             <div className="task-content">
-                <div className="task-title">
-                    {task.title}
+                <div className="task-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <span>{task.title}</span>
+                    {courseName && (
+                        <span className="task-inline-course-name" style={{ marginTop: '2px' }}>
+                            {courseName}
+                        </span>
+                    )}
                 </div>
                 {deadlineText && (
-                    <div className={`task-deadline ${isOverdue && !task.completed ? 'overdue' : ''}`}>
-                        {deadlineText}
+                    <div className="task-deadline">
+                        <span className={isOverdue && !task.completed ? 'overdue' : ''}>
+                            {deadlineText}
+                        </span>
                     </div>
                 )}
             </div>

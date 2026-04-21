@@ -1,0 +1,103 @@
+.calendar-view {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 3rem;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.date-group-card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid rgba(132, 169, 140, 0.15) !important;
+    box-shadow: var(--shadow-card) !important;
+    padding: 0;
+    width: 100%;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.date-group-card::before {
+    display: none;
+}
+
+.date-group-header {
+    background: #84A98C;
+    padding: 0.5rem 1.25rem;
+    color: white;
+}
+
+.date-group-header h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.date-group-header h3.overdue-header {
+    color: #ffeded;
+}
+
+.course-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.course-tasks .task-wrapper {
+    position: relative;
+    border-bottom: 1px solid rgba(132, 169, 140, 0.15);
+    background: transparent;
+    transition: background 0.2s ease;
+}
+
+.course-tasks .task-wrapper:hover {
+    background: rgba(132, 169, 140, 0.05);
+}
+
+.course-tasks .task-wrapper:last-child {
+    border-bottom: none;
+}
+
+.empty-state.content-card {
+    background: transparent;
+    border: 1px dashed rgba(132, 169, 140, 0.4) !important;
+    box-shadow: none !important;
+    border-radius: var(--radius-lg);
+}
+
+.empty-state {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 1.5rem 0;
+    text-align: center;
+    color: var(--color-text-lighter);
+}
+
+/* Override task-item styles specifically for CalendarView */
+.date-group-card .task-item {
+    background: transparent;
+    box-shadow: none !important;
+    border-radius: 0;
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+}
+
+.date-group-card .task-item .delete-btn {
+    display: none !important;
+}
+
+.date-group-card .task-item:hover:not(.read-only) {
+    background: transparent;
+    box-shadow: none !important;
+    transform: none;
+}

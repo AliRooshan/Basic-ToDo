@@ -76,12 +76,32 @@
     text-decoration: line-through;
 }
 
+.task-deadline-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.2rem;
+}
+
 .task-deadline {
-    font-size: 0.8rem;
+    font-size: 0.75rem; /* Reduced from 0.8rem */
     font-weight: 400;
     color: var(--color-text-light);
     font-family: 'Lora', serif;
-    margin-top: 0.25rem;
+}
+
+.deadline-separator {
+    font-size: 0.7rem;
+    color: var(--color-primary-soft);
+}
+
+.task-inline-course-name {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    opacity: 0.8;
 }
 
 .task-deadline.overdue {

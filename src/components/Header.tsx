@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ mode, onModeChange, logout }) => {
                     </defs>
                 </svg>
                 <Leaf className="header-logo-icon" size={24} style={{ stroke: 'url(#leaf-gradient)' }} />
-                <span className="header-title">Daily Flow</span>
+                <span className="header-title">To Do</span>
             </div>
 
             <div className="header-tabs-container">
@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ mode, onModeChange, logout }) => {
                     className={`header-tab ${mode === 'personal' ? 'active' : ''}`}
                     onClick={() => onModeChange('personal')}
                 >
-                    Project
+                    Calendar
                 </button>
             </div>
 
